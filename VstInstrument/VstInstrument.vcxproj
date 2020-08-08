@@ -158,12 +158,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="C:\SDKs\VST_SDK\VST3_SDK\public.sdk\source\main\dllmain.cpp" />
+    <ClCompile Include="factory.cpp" />
     <ClCompile Include="VstProcessor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vst3.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="fuid.h" />
     <ClInclude Include="VstProcessor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

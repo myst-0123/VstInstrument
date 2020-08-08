@@ -3,6 +3,11 @@
 namespace Steinberg {
 namespace Vst {
 
+    VstProcessor::VstProcessor()
+    {
+
+    }
+
     tresult PLUGIN_API VstProcessor::initialize(FUnknown* context)
     {
         tresult result = AudioEffect::initialize(context);
