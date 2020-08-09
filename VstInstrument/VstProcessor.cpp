@@ -100,7 +100,19 @@ namespace Vst {
 
     Sample32 VstProcessor::makeSound(float pitch)
     {
+        const float PI = 3.1415926f;
 
+        Sample32 madeSound = 0.0f;
+        std::vector<float> pitchs{pitch, pitch * 2, pitch * 3, pitch * 4, pitch * 5};
+        std::vector<float> env{0.5f, 1.0f, 0.7f, 0.5f, 0.3f};
+        static std::vector<float> thetas(5, 0);
+
+        for (int i = 0; i < 5; i++) {
+            thetas[i] += (2.0f * PI * pitchs[i] / 44100.0f);
+            madeSound += env[i] * sin(thetas[i]);
+        }
+
+        return madeSound;
     }
 
 } }

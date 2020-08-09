@@ -9,7 +9,6 @@ namespace Vst {
     class VstProcessor : public AudioEffect {
     private:
         std::vector<float> pitchList;
-        ParamValue theta;
     public:
         VstProcessor();
 
