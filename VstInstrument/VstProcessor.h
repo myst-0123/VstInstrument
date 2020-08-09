@@ -2,6 +2,7 @@
 
 #include "public.sdk/source/vst/vstaudioeffect.h"
 #include "pluginterfaces/vst/ivstevents.h"
+#include "pluginterfaces/vst/ivstparameterchanges.h"
 
 namespace Steinberg {
 namespace Vst {
@@ -9,6 +10,7 @@ namespace Vst {
     class VstProcessor : public AudioEffect {
     private:
         std::vector<float> pitchList;
+        ParamValue volume;
     public:
         VstProcessor();
 

@@ -1,11 +1,14 @@
 #include "VstProcessor.h"
 
+#include "VstTagDefine.h"
+#include "fuid.h"
+
 namespace Steinberg {
 namespace Vst {
 
     VstProcessor::VstProcessor()
     {
-
+        setControllerClass(ControllerUID);
     }
 
     tresult PLUGIN_API VstProcessor::initialize(FUnknown* context)
@@ -15,6 +18,7 @@ namespace Vst {
             addEventInput(STR16("MIDI Input"), 1);
             addAudioOutput(STR16("AudioOutput"), SpeakerArr::kStereo);
         
+            volume = 0;
             pitchList.clear();
         }
 
@@ -31,6 +35,29 @@ namespace Vst {
 
     tresult PLUGIN_API VstProcessor::process(ProcessData& data)
     {
+        //パラメーター変更の処理
+        if (data.inputParameterChanges != NULL) {
+            int32 paramChangeCount = data.inputParameterChanges->getParameterCount();
+            for (int32 i = 0; i < paramChangeCount; i++) {
+                IParamValueQueue* queue = data.inputParameterChanges->getParameterData(i);
+                if (queue != NULL) {
+                    int32 tag = queue->getParameterId();
+                    int32 valueChangeCount = queue->getPointCount();
+                    ParamValue value;
+                    int32 sampleOffset;
+
+                    if (queue->getPoint(valueChangeCount - 1, sampleOffset, value) == kResultTrue) {
+                        switch (tag) {
+                        case VOLUME_TAG:
+                            volume = value;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        //MIDIの処理
         IEventList* eventList = data.inputEvents;
         if (eventList != NULL) {
             int32 numEvent = eventList->getEventCount();

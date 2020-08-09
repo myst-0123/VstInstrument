@@ -2,6 +2,7 @@
 
 #include "fuid.h"
 #include "VstProcessor.h"
+#include "VstController.h"
 
 #define MYVST_SUBCATEGORIES Vst::PlugType::kInstrument
 
@@ -25,5 +26,15 @@ DEF_CLASS2(INLINE_UID_FROM_FUID(Steinberg::Vst::ProcessorUID),
            MYVST_VERSION,
            kVstVersionString,
            Steinberg::Vst::VstProcessor::createInstance )
+
+DEF_CLASS2(INLINE_UID_FROM_FUID(Steinberg::Vst::ControllerUID),
+           PClassInfo::kManyInstances,
+           kVstComponentControllerClass,
+           MYVST_NAME,
+           0,
+           "",
+           MYVST_VERSION,
+           kVstVersionString,
+           Steinberg::Vst::VstController::createInstance )
 
 END_FACTORY
