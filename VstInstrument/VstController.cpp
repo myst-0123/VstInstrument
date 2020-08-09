@@ -10,6 +10,8 @@ namespace Vst {
         if (result == kResultTrue) {
             parameters.addParameter(STR16("Volume"), STR16("..."), 0, 1, ParameterInfo::kCanAutomate, VOLUME_TAG);
         }
+
+        return kResultTrue;
     }
 
 } }
