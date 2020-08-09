@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="C:\SDKs\VST_SDK\VST3_SDK\public.sdk\source\main\dllmain.cpp" />
     <ClCompile Include="factory.cpp" />
+    <ClCompile Include="VstController.cpp" />
     <ClCompile Include="VstProcessor.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +167,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fuid.h" />
+    <ClInclude Include="VstController.h" />
     <ClInclude Include="VstProcessor.h" />
+    <ClInclude Include="VstTagDefine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
