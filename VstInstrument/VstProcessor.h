@@ -9,7 +9,7 @@ namespace Vst {
 
     class VstProcessor : public AudioEffect {
     private:
-        std::vector<float> pitchList;
+        std::vector<int> noteNoList;
         ParamValue volume;
     public:
         VstProcessor();
