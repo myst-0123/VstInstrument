@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fuid.h" />
+    <ClInclude Include="MidiNoteData.h" />
     <ClInclude Include="VstController.h" />
     <ClInclude Include="VstProcessor.h" />
     <ClInclude Include="VstTagDefine.h" />

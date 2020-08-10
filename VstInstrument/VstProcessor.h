@@ -4,12 +4,14 @@
 #include "pluginterfaces/vst/ivstevents.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 
+#include "MidiNoteData.h"
+
 namespace Steinberg {
 namespace Vst {
 
     class VstProcessor : public AudioEffect {
     private:
-        std::vector<int> noteNoList;
+        std::vector<MidiNoteData> midiNotes;
         ParamValue volume;
     public:
         VstProcessor();
