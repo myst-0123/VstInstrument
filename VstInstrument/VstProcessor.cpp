@@ -96,8 +96,8 @@ namespace Vst {
         for (int32 i = 0; i < data.numSamples; i++) {
             Sample32 sound = 0.0f;
 
-            for (auto i : noteNoList) {
-                float pitch = (440.0f * powf(2.0f, (float)(i - (69)) / 12.0f));
+            for (auto i : midiNotes) {
+                float pitch = (440.0f * powf(2.0f, (float)(i.noteNo - (69)) / 12.0f));
                 sound += makeSound(pitch);
             }
 
@@ -110,19 +110,19 @@ namespace Vst {
 
     void VstProcessor::onNoteOn(int channel, int note, float velocity)
     {
-        noteNoList.push_back(note);
+        midiNotes.push_back(MidiNoteData(note));
         volume = 0.5f;
     }
 
     void VstProcessor::onNoteOff(int channel, int note, float velocity)
     {
-        auto noteNoListItr = find(noteNoList.begin(), noteNoList.end(), note);
+        auto midiNotesItr = find(midiNotes.begin(), midiNotes.end(), MidiNoteData(note));
         
-        if (noteNoListItr != noteNoList.end()) {
-            noteNoList.erase(noteNoListItr);
+        if (midiNotesItr != midiNotes.end()) {
+            midiNotes.erase(midiNotesItr);
         }
 
-        if (noteNoList.empty()) 
+        if (midiNotes.empty())
             volume = 0.0f;
 
     }
