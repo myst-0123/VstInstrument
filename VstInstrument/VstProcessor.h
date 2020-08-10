@@ -26,7 +26,7 @@ namespace Vst {
 
         virtual void onNoteOff(int channel, int note, float velocity);
 
-        Sample32 makeSound(float pitch);
+        Sample32 makeSound(MidiNoteData);
 
         static FUnknown* createInstance(void*) { return (IAudioProcessor*)new VstProcessor(); }
     };

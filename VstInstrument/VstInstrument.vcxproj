@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="C:\SDKs\VST_SDK\VST3_SDK\public.sdk\source\main\dllmain.cpp" />
     <ClCompile Include="factory.cpp" />
+    <ClCompile Include="MidiNoteData.cpp" />
     <ClCompile Include="VstController.cpp" />
     <ClCompile Include="VstProcessor.cpp" />
   </ItemGroup>
