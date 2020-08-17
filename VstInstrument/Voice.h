@@ -1,11 +1,9 @@
 #include "Oscillator.h"
 
 class Voice {
-    int noteNo;
+    int key;
     Oscillator osc;
 public:
-    Voice();
-
     void start(int channel, int noteNo, float velocity);
 
     void stop();
@@ -13,4 +11,8 @@ public:
     void update();
 
     float process();
+
+    int getState() { return osc.getState() };
+
+    int getKey() { return key};
 };
