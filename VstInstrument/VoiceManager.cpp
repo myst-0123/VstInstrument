@@ -1,6 +1,6 @@
 #include "VoiceManager.h"
 
-VoiceManager::VoiceManager() : voices(VOICE_NUM) { }
+VoiceManager::VoiceManager() : voice(VOICE_NUM) { }
 
 void VoiceManager::noteOn(int channel, int noteNo, float velocity)
 {

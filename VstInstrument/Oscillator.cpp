@@ -1,5 +1,7 @@
 #include "Oscillator.h"
 
+#include <math.h>
+
 Oscillator::Oscillator() : pitch(440.0f), theta(0.0f) { }
 
 void Oscillator::start(float freq)

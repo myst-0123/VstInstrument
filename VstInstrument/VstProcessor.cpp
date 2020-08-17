@@ -19,7 +19,6 @@ namespace Vst {
             addAudioOutput(STR16("AudioOutput"), SpeakerArr::kStereo);
         
             volume = 0.5f;
-            midiNotes.clear();
         }
 
         return result;

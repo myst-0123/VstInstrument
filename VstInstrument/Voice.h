@@ -12,7 +12,7 @@ public:
 
     float process();
 
-    int getState() { return osc.getState() };
+    int getState() { return osc.getState(); };
 
-    int getKey() { return key};
+    int getKey() { return key; };
 };
