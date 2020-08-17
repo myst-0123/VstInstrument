@@ -93,7 +93,8 @@ namespace Vst {
         Sample32* outR = data.outputs[0].channelBuffers32[1];
 
         for (int32 i = 0; i < data.numSamples; i++) {
-            Sample32 sound = 0.0f;
+            Sample32 sound = voiceManager.process();
+            voiceManager.update();
 
             outL[i] = sound;
             outR[i] = sound;
