@@ -159,16 +159,20 @@
   <ItemGroup>
     <ClCompile Include="C:\SDKs\VST_SDK\VST3_SDK\public.sdk\source\main\dllmain.cpp" />
     <ClCompile Include="factory.cpp" />
-    <ClCompile Include="MidiNoteData.cpp" />
+    <ClCompile Include="Oscillator.cpp" />
+    <ClCompile Include="VoiceManager.cpp" />
     <ClCompile Include="VstController.cpp" />
     <ClCompile Include="VstProcessor.cpp" />
+    <ClCompile Include="ソース.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vst3.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fuid.h" />
-    <ClInclude Include="MidiNoteData.h" />
+    <ClInclude Include="Oscillator.h" />
+    <ClInclude Include="Voice.h" />
+    <ClInclude Include="VoiceManager.h" />
     <ClInclude Include="VstController.h" />
     <ClInclude Include="VstProcessor.h" />
     <ClInclude Include="VstTagDefine.h" />

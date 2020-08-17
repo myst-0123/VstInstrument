@@ -131,14 +131,11 @@ namespace Vst {
         const float PI = 3.1415926f;
 
         Sample32 madeSound = 0.0f;
-        std::vector<float> env{1.0f, 0.7f, 0.3f, 0.5f, 0.2f};
 
         float pitch = (440.0f * powf(2.0f, (float)data.noteNo - (69) / 12.0f));
 
-        for (int i = 0; i < 5; i++) {
-            data.theta += (2.0f * PI * pitch / 48000.0f);
-            madeSound += env[i] * sin(data.theta * (i + 1));
-        }
+        data.theta += (2.0f * PI * pitch / 48000.0f);
+        madeSound += sin(data.theta);
 
         return madeSound;
     }
