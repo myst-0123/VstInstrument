@@ -4,14 +4,14 @@
 #include "pluginterfaces/vst/ivstevents.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 
-#include "MidiNoteData.h"
+#include "VoiceManager.h"
 
 namespace Steinberg {
 namespace Vst {
 
     class VstProcessor : public AudioEffect {
     private:
-        std::vector<MidiNoteData> midiNotes;
+        VoiceManager voiceManager;
         ParamValue volume;
     public:
         VstProcessor();
@@ -25,8 +25,6 @@ namespace Vst {
         virtual void onNoteOn(int channel, int note, float velocity);
 
         virtual void onNoteOff(int channel, int note, float velocity);
-
-        Sample32 makeSound(MidiNoteData);
 
         static FUnknown* createInstance(void*) { return (IAudioProcessor*)new VstProcessor(); }
     };

@@ -96,12 +96,8 @@ namespace Vst {
         for (int32 i = 0; i < data.numSamples; i++) {
             Sample32 sound = 0.0f;
 
-            for (auto i : midiNotes) {
-                sound += makeSound(i);
-            }
-
-            outL[i] = volume * sound;
-            outR[i] = volume * sound;
+            outL[i] = sound;
+            outR[i] = sound;
         }
 
         return kResultTrue;
@@ -109,35 +105,12 @@ namespace Vst {
 
     void VstProcessor::onNoteOn(int channel, int note, float velocity)
     {
-        midiNotes.push_back(MidiNoteData(note));
-        volume = 0.5f;
+        voiceManager.noteOn(channel, note, velocity);
     }
 
     void VstProcessor::onNoteOff(int channel, int note, float velocity)
     {
-        auto midiNotesItr = find(midiNotes.begin(), midiNotes.end(), MidiNoteData(note));
-        
-        if (midiNotesItr != midiNotes.end()) {
-            midiNotes.erase(midiNotesItr);
-        }
-
-        if (midiNotes.empty())
-            volume = 0.0f;
-
-    }
-
-    Sample32 VstProcessor::makeSound(MidiNoteData data)
-    {
-        const float PI = 3.1415926f;
-
-        Sample32 madeSound = 0.0f;
-
-        float pitch = (440.0f * powf(2.0f, (float)data.noteNo - (69) / 12.0f));
-
-        data.theta += (2.0f * PI * pitch / 48000.0f);
-        madeSound += sin(data.theta);
-
-        return madeSound;
+        voiceManager.noteOff(note);
     }
 
 } }
