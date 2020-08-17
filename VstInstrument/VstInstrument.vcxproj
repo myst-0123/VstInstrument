@@ -164,7 +164,6 @@
     <ClCompile Include="VoiceManager.cpp" />
     <ClCompile Include="VstController.cpp" />
     <ClCompile Include="VstProcessor.cpp" />
-    <ClCompile Include="ソース.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vst3.def" />
