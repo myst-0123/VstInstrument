@@ -5,7 +5,7 @@ VoiceManager::VoiceManager() : voice(VOICE_NUM) { }
 void VoiceManager::noteOn(int channel, int noteNo, float velocity)
 {
     for (auto i : voice) {
-        if (i.getState() == ENVGEN_STOP) {
+        if (i.getState() == ENV_STOP) {
             i.start(channel, noteNo, velocity);
             return;
         }
@@ -16,7 +16,7 @@ void VoiceManager::noteOff(int noteNo)
 {
     for (auto i : voice) {
         if (i.getKey() == noteNo) {
-            if (i.getState() == ENVGEN_STOP) continue;
+            if (i.getState() == ENV_STOP) continue;
         }
         else {
             i.stop();

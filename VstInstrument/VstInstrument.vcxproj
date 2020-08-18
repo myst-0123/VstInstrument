@@ -158,6 +158,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="C:\SDKs\VST_SDK\VST3_SDK\public.sdk\source\main\dllmain.cpp" />
+    <ClCompile Include="Envelope.cpp" />
     <ClCompile Include="factory.cpp" />
     <ClCompile Include="Oscillator.cpp" />
     <ClCompile Include="Voice.cpp" />
@@ -169,6 +170,7 @@
     <None Include="vst3.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Envelope.h" />
     <ClInclude Include="fuid.h" />
     <ClInclude Include="Oscillator.h" />
     <ClInclude Include="Voice.h" />

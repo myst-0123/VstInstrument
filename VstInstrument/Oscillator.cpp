@@ -2,24 +2,20 @@
 
 #include <math.h>
 
-Oscillator::Oscillator() : pitch(440.0f), 
-                           theta(0.0f), 
-                           env(0.0f), 
-                           state(ENVGEN_STOP) 
+Oscillator::Oscillator() 
+    : pitch(440.0f), 
+      theta(0.0f)
 { }
 
 void Oscillator::start(float freq)
 {
     pitch = freq;
     theta = 0.0f;
-    env = 1.0f;
-    state = ENVGEN_ON;
 }
 
 void Oscillator::stop()
 {
-    env = 0.0f;
-    state = ENVGEN_STOP;
+
 }
 
 void Oscillator::update()
@@ -30,5 +26,5 @@ void Oscillator::update()
 
 float Oscillator::process()
 {
-    return env * sin(theta);
+    return sin(theta);
 }
