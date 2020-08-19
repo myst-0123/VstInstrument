@@ -19,7 +19,6 @@ namespace Vst {
             addAudioOutput(STR16("AudioOutput"), SpeakerArr::kStereo);
         
             volume = 0.5f;
-            noteNoList.clear();
         }
 
         return result;
@@ -94,15 +93,11 @@ namespace Vst {
         Sample32* outR = data.outputs[0].channelBuffers32[1];
 
         for (int32 i = 0; i < data.numSamples; i++) {
-            float pitch = 0.0f;
+            Sample32 sound = voiceManager.process();
+            voiceManager.update();
 
-            if (!noteNoList.empty())
-                pitch = (440.0f * powf(2.0f, (float)(noteNoList.back() - (69)) / 12.0f));
-
-            Sample32 sound = makeSound(pitch);
-
-            outL[i] = volume * sound;
-            outR[i] = volume * sound;
+            outL[i] = sound;
+            outR[i] = sound;
         }
 
         return kResultTrue;
@@ -110,44 +105,12 @@ namespace Vst {
 
     void VstProcessor::onNoteOn(int channel, int note, float velocity)
     {
-        noteNoList.push_back(note);
-        volume = 0.5f;
+        voiceManager.noteOn(channel, note, velocity);
     }
 
     void VstProcessor::onNoteOff(int channel, int note, float velocity)
     {
-        auto noteNoListItr = find(noteNoList.begin(), noteNoList.end(), note);
-        
-        if (noteNoListItr != noteNoList.end()) {
-            noteNoList.erase(noteNoListItr);
-        }
-
-        if (noteNoList.empty()) 
-            volume = 0.0f;
-
-    }
-
-    Sample32 VstProcessor::makeSound(float pitch)
-    {
-        const float PI = 3.1415926f;
-
-        Sample32 madeSound = 0.0f;
-        std::vector<float> pitchs{pitch, pitch * 2, pitch * 3, pitch * 4, pitch * 5};
-        std::vector<float> env{1.0f, 0.7f, 0.3f, 0.5f, 0.2f};
-        static float prePitch = 0;
-        static std::vector<float> thetas(pitchs.size(), 0.0f);
-
-        if (pitch != prePitch) {
-            thetas.assign(pitchs.size(), 0.0f);
-            prePitch = pitch;
-        }
-
-        for (int i = 0; i < pitchs.size(); i++) {
-            thetas[i] += (2.0f * PI * pitchs[i] / 48000.0f);
-            madeSound += env[i] * sin(thetas[i]);
-        }
-
-        return madeSound;
+        voiceManager.noteOff(note);
     }
 
 } }

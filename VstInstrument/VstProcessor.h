@@ -4,12 +4,14 @@
 #include "pluginterfaces/vst/ivstevents.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 
+#include "VoiceManager.h"
+
 namespace Steinberg {
 namespace Vst {
 
     class VstProcessor : public AudioEffect {
     private:
-        std::vector<int> noteNoList;
+        VoiceManager voiceManager;
         ParamValue volume;
     public:
         VstProcessor();
@@ -23,8 +25,6 @@ namespace Vst {
         virtual void onNoteOn(int channel, int note, float velocity);
 
         virtual void onNoteOff(int channel, int note, float velocity);
-
-        Sample32 makeSound(float pitch);
 
         static FUnknown* createInstance(void*) { return (IAudioProcessor*)new VstProcessor(); }
     };
