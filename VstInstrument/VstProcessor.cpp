@@ -50,6 +50,22 @@ namespace Vst {
                         case VOLUME_TAG:
                             volume = value;
                             break;
+                        case ATTACK_TAG:
+                            attack = value;
+                            voiceManager.setADSR(attack, decay, sustain, release);
+                            break;
+                        case DECAY_TAG:
+                            decay = value;
+                            voiceManager.setADSR(attack, decay, sustain, release);
+                            break;
+                        case SUSTAIN_TAG:
+                            sustain = value;
+                            voiceManager.setADSR(attack, decay, sustain, release);
+                            break;
+                        case RELEASE_TAG:
+                            release = value;
+                            voiceManager.setADSR(attack, decay, sustain, release);
+                            break;
                         }
                     }
                 }

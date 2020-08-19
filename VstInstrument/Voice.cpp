@@ -32,3 +32,8 @@ float Voice::process()
 
     return out;
 }
+
+void Voice::setADSR(float a, float d, float s, float r)
+{
+    env.setADSR(a, d, s, r);
+}

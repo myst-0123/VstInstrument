@@ -16,4 +16,6 @@ public:
     void update();
 
     float process();
+    
+    void setADSR(float a, float d, float s, float r);
 };

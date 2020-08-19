@@ -38,3 +38,9 @@ float VoiceManager::process()
 
     return result;
 }
+
+void VoiceManager::setADSR(float a, float d, float s, float r)
+{
+    for (auto& i : voice)
+        i.setADSR(a, d, s, r);
+}

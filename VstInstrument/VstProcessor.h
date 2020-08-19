@@ -12,7 +12,12 @@ namespace Vst {
     class VstProcessor : public AudioEffect {
     private:
         VoiceManager voiceManager;
+
         ParamValue volume;
+        ParamValue attack;
+        ParamValue decay;
+        ParamValue sustain;
+        ParamValue release;
     public:
         VstProcessor();
 
